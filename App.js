@@ -1,12 +1,24 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, FlatList, RefreshControl } from 'react-native';
 import homeIcon from './assets/home.png';
 
 export default function App() {
+  const [refreshing, setRefreshing] = React.useState(false); 
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }, []);
+
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <Text>surfConnect</Text>
+      <ScrollView  style={styles.scrollView} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
+        <Text>surfConnect</Text>
+      </ScrollView>
       <View style={styles.navbar}>
         <View style={styles.navIconTextWrapper}>
           <Image style={styles.navIcon} source={homeIcon}/>
@@ -35,6 +47,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  scrollView: {
+    flex: 1,
+    width: '100%',
   },
   navbar: {
     flexDirection: 'row',
