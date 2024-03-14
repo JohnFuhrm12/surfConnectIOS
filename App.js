@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
+import homeIcon from './assets/home.png';
 
 export default function App() {
   return (
@@ -7,10 +8,22 @@ export default function App() {
       <StatusBar style="auto" />
       <Text>surfConnect</Text>
       <View style={styles.navbar}>
-        <Text>Home</Text>
-        <Text>Explorer</Text>
-        <Text>Notifications</Text>
-        <Text>Profile</Text>
+        <View style={styles.navIconTextWrapper}>
+          <Image style={styles.navIcon} source={homeIcon}/>
+          <Text>Home</Text>
+        </View>
+        <View style={styles.navIconTextWrapper}>
+          <Image style={styles.navIcon} source={homeIcon}/>
+          <Text>Explore</Text>
+        </View>
+        <View style={styles.navIconTextWrapper}>
+          <Image style={styles.navIcon} source={homeIcon}/>
+          <Text>Notifications</Text>
+        </View>
+        <View style={styles.navIconTextWrapper}>
+          <Image style={styles.navIcon} source={homeIcon}/>
+          <Text>Profile</Text>
+        </View>
       </View>
     </View>
   );
@@ -25,18 +38,25 @@ const styles = StyleSheet.create({
   },
   navbar: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
     gap: 20,
     backgroundColor: '#fff',
     position: 'absolute',
     bottom: 0,
     borderTopWidth: 1,
-    borderTopColor: 'blue',
+    borderTopColor: '#dbdbdb',
     alignSelf: 'stretch',
     width:'100%',
-    paddingTop: 30,
-    paddingBottom: 50,
-    paddingLeft: 30,
-    paddingRight: 30,
+    paddingTop: 10,
+    paddingBottom: 30,
+    paddingLeft: 20,
+    paddingRight: 20,
     },
+    navIconTextWrapper: {
+      alignItems: 'center',
+      gap: 5,
+    },
+    navIcon: {
+      width: 30,
+    }
 });
